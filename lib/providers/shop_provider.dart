@@ -27,9 +27,9 @@ class ShopProvider extends ChangeNotifier {
     ),
     CategoryModel(
       slug: 'sandals',
-      title: 'Women’s Shoes',
+      title: 'Women’s Ring',
       price: 500.0,
-      imagePath: 'assets/images/accessories.jpg',
+      imagePath: 'assets/images/hand_ring.png',
       description: 'Elegant footwear for a polished look.',
     ),
     CategoryModel(

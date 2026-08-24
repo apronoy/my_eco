@@ -56,7 +56,7 @@ class _PageTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Discover the Collection',
+      'Discover your Dream',
       textAlign: TextAlign.center,
       style: GoogleFonts.montserrat(
         fontSize: 17,
