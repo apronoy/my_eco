@@ -40,17 +40,87 @@ class CategoryCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 18),
-          Text(
-            category.title,
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.montserrat(
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.15,
-              height: 1.25,
+          const SizedBox(height: 8),
+
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        category.rating?.toStringAsFixed(1) ?? 'No rating',
+                        style: GoogleFonts.montserrat(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.15,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: List.generate(5, (index) {
+                          return Icon(
+                            index < (category.rating ?? 0).round()
+                                ? Icons.star
+                                : Icons.star_border,
+                            color: Colors.amber,
+                            size: 18,
+                          );
+                        }),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 5),
+
+                  // Text(
+                  //   category.title,
+                  //   maxLines: 2,
+                  //   overflow: TextOverflow.ellipsis,
+                  //   style: GoogleFonts.montserrat(
+                  //     fontSize: 12,
+                  //     fontWeight: FontWeight.w600,
+                  //     letterSpacing: 0.15,
+                  //     height: 1.25,
+                  //   ),
+                  // ),
+                  // SizedBox(height: 2),
+                  Row(
+                    children: [
+                      Text(
+                        "\$${category.price.toString()}",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.15,
+                          height: 1.25,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        "\$${(category.price - 70).toString()}",
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: GoogleFonts.montserrat(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          letterSpacing: 0.15,
+                          height: 1.25,
+                          decoration: TextDecoration.lineThrough,
+                          decorationColor: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
