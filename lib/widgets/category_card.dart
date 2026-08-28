@@ -78,18 +78,7 @@ class CategoryCard extends StatelessWidget {
                   ),
                   SizedBox(height: 5),
 
-                  // Text(
-                  //   category.title,
-                  //   maxLines: 2,
-                  //   overflow: TextOverflow.ellipsis,
-                  //   style: GoogleFonts.montserrat(
-                  //     fontSize: 12,
-                  //     fontWeight: FontWeight.w600,
-                  //     letterSpacing: 0.15,
-                  //     height: 1.25,
-                  //   ),
-                  // ),
-                  // SizedBox(height: 2),
+               
                   Row(
                     children: [
                       Text(

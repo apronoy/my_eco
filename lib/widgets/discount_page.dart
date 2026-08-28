@@ -1,64 +1,15 @@
-import 'dart:async';
-
+import 'package:feelify/providers/shop_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class DiscountOffer extends StatefulWidget {
+class DiscountOffer extends StatelessWidget {
   const DiscountOffer({super.key});
 
   @override
-  State<DiscountOffer> createState() => _DiscountOfferState();
-}
-
-class _DiscountOfferState extends State<DiscountOffer> {
-  Timer? _timer;
-
-  int days = 10;
-  int hours = 23;
-  int minutes = 51;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _timer = Timer.periodic(const Duration(minutes: 1), (_) {
-      _updateTime();
-    });
-  }
-
-  void _updateTime() {
-    if (minutes > 0) {
-      setState(() {
-        minutes--;
-      });
-      return;
-    }
-
-    if (hours > 0) {
-      setState(() {
-        hours--;
-        minutes = 59;
-      });
-      return;
-    }
-
-    if (days > 0) {
-      setState(() {
-        days--;
-        hours = 23;
-        minutes = 59;
-      });
-    }
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final discount = context.watch<ShopProvider>();
+
     return Dialog(
       backgroundColor: Colors.white,
       insetPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -69,7 +20,6 @@ class _DiscountOfferState extends State<DiscountOffer> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Top image
               Stack(
                 children: [
                   ClipRRect(
@@ -85,7 +35,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                       errorBuilder: (_, __, ___) {
                         return Container(
                           width: double.infinity,
-                          height: 150,
+                          height: 190,
                           color: const Color(0xFFEAEAEA),
                           child: const Icon(
                             Icons.local_offer_outlined,
@@ -123,7 +73,6 @@ class _DiscountOfferState extends State<DiscountOffer> {
 
               const SizedBox(height: 20),
 
-              // Discount
               Text(
                 '10% OFF',
                 textAlign: TextAlign.center,
@@ -148,7 +97,8 @@ class _DiscountOfferState extends State<DiscountOffer> {
               const SizedBox(height: 22),
 
               Text(
-                'Hurry up to buy! Until the end of\nthe promotion left:',
+                'Hurry up to buy! Until the end of\n'
+                'the promotion left:',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.montserrat(
                   fontSize: 13,
@@ -159,29 +109,41 @@ class _DiscountOfferState extends State<DiscountOffer> {
 
               const SizedBox(height: 15),
 
-              // Countdown
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
                   children: [
                     Expanded(
-                      child: _timeBox(value: days, label: 'Days'),
+                      child: _timeBox(value: discount.days, label: 'Days'),
                     ),
+
                     const SizedBox(width: 8),
+
                     Expanded(
-                      child: _timeBox(value: hours, label: 'Hours'),
+                      child: _timeBox(value: discount.hours, label: 'Hours'),
                     ),
+
                     const SizedBox(width: 8),
+
                     Expanded(
-                      child: _timeBox(value: minutes, label: 'Minutes'),
+                      child: _timeBox(
+                        value: discount.minutes,
+                        label: 'Minutes',
+                      ),
                     ),
+
+                    const SizedBox(width: 8),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 22),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 130.0),
+                child: _timeBox(value: discount.seconds, label: 'Seconds'),
+              ),
 
-              // Start shopping
+              const SizedBox(height: 10),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SizedBox(
@@ -195,7 +157,7 @@ class _DiscountOfferState extends State<DiscountOffer> {
                       backgroundColor: Colors.black,
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(3),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
                     child: Text(
@@ -249,6 +211,19 @@ class _DiscountOfferState extends State<DiscountOffer> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _colon() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Text(
+        ':',
+        style: GoogleFonts.montserrat(
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
     );
   }
 }

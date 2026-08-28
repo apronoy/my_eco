@@ -1,16 +1,17 @@
+import 'package:feelify/providers/shop_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/routes/app_router.dart';
 import 'core/theme/app_theme.dart';
-import 'providers/shop_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
     ChangeNotifierProvider(
-      create: (_) => ShopProvider(),
+      lazy: false,
+      create: (_) => ShopProvider()..startCountdown(),
       child: const LuxuryShop(),
     ),
   );

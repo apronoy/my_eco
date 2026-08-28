@@ -1,10 +1,9 @@
 import 'package:feelify/pages/footer.dart';
+import 'package:feelify/providers/shop_provider.dart';
 import 'package:feelify/widgets/discount_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import '../providers/shop_provider.dart';
 import '../widgets/app_header.dart';
 import '../widgets/responsive_category_grid.dart';
 

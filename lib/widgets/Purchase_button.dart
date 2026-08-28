@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
         child: Text(
           text,
           style: GoogleFonts.montserrat(
-            fontSize: 15,
+            fontSize: 20,
             fontWeight: FontWeight.w500,
           ),
         ),

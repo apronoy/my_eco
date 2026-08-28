@@ -1,9 +1,8 @@
+import 'package:feelify/providers/shop_provider.dart';
 import 'package:feelify/widgets/Purchase_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import '../providers/shop_provider.dart';
 import '../widgets/app_header.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -56,53 +55,98 @@ class CategoryPage extends StatelessWidget {
                 const SizedBox(height: 25),
 
                 Text(
-                  'Title',
+                  'Name',
                   style: GoogleFonts.montserrat(
-                    fontSize: 15,
+                    fontSize: 18,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                 ),
-                Text(
-                  category.title,
-                  style: GoogleFonts.montserrat(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: -0.5,
-                    color: Colors.black,
-                  ),
-                ),
-
-                const SizedBox(height: 12),
-
-                Text(
-                  'Price',
-                  style: GoogleFonts.montserrat(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.black,
-                  ),
-                ),
+                const SizedBox(height: 7),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '\$1,250.00',
+                      category.title,
                       style: GoogleFonts.montserrat(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -0.5,
                         color: Colors.black,
                       ),
                     ),
-                    SizedBox(width: 15),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+
+                      children: [
+                        Text(
+                          category.rating?.toStringAsFixed(1) ?? 'No rating',
+                          style: GoogleFonts.montserrat(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: 0.15,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(5, (index) {
+                            return Icon(
+                              index < (category.rating ?? 0).round()
+                                  ? Icons.star
+                                  : Icons.star_border,
+                              color: Colors.amber,
+                              size: 18,
+                            );
+                          }),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 15),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
                     Text(
-                      '\$1,250.00',
+                      'Price',
                       style: GoogleFonts.montserrat(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
                         color: Colors.black,
-                        decoration: TextDecoration.lineThrough,
-                        decorationColor: Colors.grey,
                       ),
+                    ),
+
+                    Row(
+                      children: [
+                        Text(
+                          "\$${category.price.toString()}",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 0.15,
+                            height: 1.25,
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                        Text(
+                          "\$${(category.price - 70).toString()}",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.montserrat(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 0.15,
+                            height: 1.25,
+                            decoration: TextDecoration.lineThrough,
+                            decorationColor: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -110,39 +154,28 @@ class CategoryPage extends StatelessWidget {
                 const SizedBox(height: 18),
 
                 Text(
-                  'Description',
+                  'About ',
                   style: GoogleFonts.montserrat(
-                    fontSize: 15,
+                    fontSize: 18,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                 ),
+                const SizedBox(height: 7),
 
                 Text(
                   category.description,
                   style: GoogleFonts.montserrat(
                     fontSize: 14,
                     height: 1.7,
-                    fontWeight: FontWeight.w400,
-                    color: const Color(0xFF666666),
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black,
                   ),
                 ),
 
                 const SizedBox(height: 30),
 
-                CustomButton(text: 'Purchase', onPressed: () {}),
-
-                const SizedBox(height: 15),
-
-                Center(
-                  child: Text(
-                    'Secure checkout • Fast delivery',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 11,
-                      color: const Color(0xFF888888),
-                    ),
-                  ),
-                ),
+                CustomButton(text: 'Add to Cart', onPressed: () {}),
               ],
             ),
           ),
