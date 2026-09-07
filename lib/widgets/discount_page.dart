@@ -47,7 +47,7 @@ class DiscountOffer extends StatelessWidget {
                     ),
                   ),
 
-                  // Close button
+                
                   Positioned(
                     top: 10,
                     right: 10,
@@ -74,7 +74,7 @@ class DiscountOffer extends StatelessWidget {
               const SizedBox(height: 20),
 
               Text(
-                '10% OFF',
+                '17% OFF',
                 textAlign: TextAlign.center,
                 style: GoogleFonts.montserrat(
                   fontSize: 42,
