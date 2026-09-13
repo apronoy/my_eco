@@ -7,7 +7,7 @@ import 'core/theme/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
+  
   runApp(
     ChangeNotifierProvider(
       lazy: false,
