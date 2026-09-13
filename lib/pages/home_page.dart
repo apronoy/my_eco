@@ -4,6 +4,7 @@ import 'package:feelify/widgets/discount_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import '../widgets/app_header.dart';
 import '../widgets/responsive_category_grid.dart';
 
@@ -52,8 +53,6 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.fromLTRB(16, 18, 16, 60),
                     child: Column(
                       children: [
-                        const SizedBox(height: 10),
-                        const _PageTitle(),
                         const SizedBox(height: 20),
 
                         ResponsiveCategoryGrid(categories: categories),
